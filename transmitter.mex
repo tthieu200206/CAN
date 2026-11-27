@@ -36,6 +36,23 @@
                <pins>
                   <pin peripheral="CAN0" signal="rxd, rxd" pin_num="9" pin_signal="PTE4"/>
                   <pin peripheral="CAN0" signal="txd, txd" pin_num="8" pin_signal="PTE5"/>
+                  <pin peripheral="LPI2C0" signal="scl, scl" pin_num="72" pin_signal="PTA3"/>
+                  <pin peripheral="LPI2C0" signal="sda, sda" pin_num="73" pin_signal="PTA2"/>
+                  <pin peripheral="PORTC" signal="port, 12" pin_num="50" pin_signal="PTC12">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTA" signal="port, 12" pin_num="90" pin_signal="PTA12">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTA" signal="port, 13" pin_num="89" pin_signal="PTA13">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
                </pins>
             </function>
          </functions_list>
@@ -222,10 +239,22 @@
                   <data type="Version">1.0.0</data>
                </feature>
             </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.lpi2c" description="LPI2C Driver not found in the toolchain/IDE project. Project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.lpi2c" description="Unsupported version of the LPI2C Driver in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. Project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">1.0.0</data>
+               </feature>
+            </dependency>
          </dependencies>
          <generated_project_files>
             <file path="board/peripherals_flexcan_config_1.c" update_enabled="true"/>
             <file path="board/peripherals_flexcan_config_1.h" update_enabled="true"/>
+            <file path="board/peripherals_lpi2c_config_1.c" update_enabled="true"/>
+            <file path="board/peripherals_lpi2c_config_1.h" update_enabled="true"/>
             <file path="board/sdk_project_config.h" update_enabled="true"/>
          </generated_project_files>
          <peripherals_profile>
@@ -264,6 +293,25 @@
                            <setting name="pnOn" value="false"/>
                         </struct>
                         <setting name="flexcan_state_name" value="flexcanState0"/>
+                     </config_set>
+                  </instance>
+                  <instance name="lpi2c_config_1" uuid="930c9d53-ddc8-4129-a288-1a90a5adcd9b" type="lpi2c_config" type_id="lpi2c" mode="general" peripheral="LPI2C0" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="lpi2c">
+                        <array name="masterConfigurationLPI2C">
+                           <struct name="0">
+                              <setting name="name" value="lpi2c0_MasterConfig0"/>
+                              <setting name="readonly" value="true"/>
+                              <setting name="lpi2c_master_cfg_slaveAddress" value="0x76"/>
+                              <setting name="lpi2c_master_cfg_is10bitAddr" value="false"/>
+                              <setting name="lpi2c_master_cfg_operatingMode" value="LPI2C_STANDARD_MODE"/>
+                              <setting name="lpi2c_master_cfg_baudRate" value="100000"/>
+                              <setting name="lpi2c_master_cfg_transferType" value="LPI2C_USING_INTERRUPTS"/>
+                              <setting name="lpi2c_master_cfg_dmaChannel" value="0"/>
+                              <setting name="lpi2c_master_cfg_masterCallback" value="NULL"/>
+                              <setting name="lpi2c_master_cfg_callbackParam" value="NULL"/>
+                           </struct>
+                        </array>
+                        <array name="slaveConfigurationLPI2C"/>
                      </config_set>
                   </instance>
                </instances>

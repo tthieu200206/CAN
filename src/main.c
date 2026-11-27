@@ -15,6 +15,8 @@
 /* Including necessary configuration files. */
 
 #include "sdk_project_config.h"
+#include "Can.h"
+#include "CanIf.h"
 volatile int exit_code = 0;
 /* User includes */
 
